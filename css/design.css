@@ -1,0 +1,406 @@
+@charset "UTF-8";
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+button:hover {
+  opacity: 0.7;
+}
+
+body {
+  font-family: "M PLUS 1p", sans-serif;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+body.fade-in {
+  opacity: 1;
+}
+
+.main {
+  width: 100%;
+ 
+  background: linear-gradient(
+    45deg,
+    #b5b5b6 0%,
+    #ffffff 60%,
+    #ffffff 100%
+  );
+
+  background-size: 200% 100%; /* ← 高さを大きく */
+  animation: waveMoveX 6s ease-in-out infinite;
+  margin: 0 auto;
+  padding: 0 0 7% 0;
+}
+
+@keyframes waveMoveX {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+
+#header {
+ position: fixed;
+ padding: 2%;
+ background-color: rgb(22 24 25 / 75%);
+ border-bottom-right-radius: 20px;
+ z-index: 100;
+}
+.menu-small {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  color: #ffffff;
+}
+.menu-small a {
+  font-size: 16px;
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+}
+
+.design-title {
+  padding: 7% 5%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+
+  position:relative;
+  overflow:hidden;
+}
+.design-title img {
+  width: 130px;
+  height: auto;
+}
+.title-text {
+  text-align: center;
+  font-size: 55px;
+  font-family: "Convergence", sans-serif;
+  color: #fff;
+}
+.titletext-decorate {
+  background: linear-gradient(
+  to right,
+  transparent 0%,
+  #292929 40%,
+  #292929 60%,
+  transparent 100%
+);
+  width: 50%;
+  z-index: 10;
+  padding: 1%;
+}
+.about-design {
+  font-size: 18px;
+  line-height: 1.7;
+  text-align: center;
+  
+  z-index: 10;
+}
+
+.content {
+  height: fit-content;
+  padding: 0 7%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.button {
+  width: 50%;
+  padding: 2% 3%;
+  background: linear-gradient(-90deg, #ffffff 0%, #ffffff 15%, #292929 85%, #292929 100%);
+  background-size:cover;
+  background-position:center;
+
+  border:none;
+  position:relative;
+
+  cursor:pointer;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+}
+.kurahiro.active, .juken.active, .tech.active, .mama.active, .sticker.active, .game.active, .hs.active, .us.active {
+  background: #161819;
+}
+.buttonname {
+  color: #fff;
+  font-size: 18px;
+
+  font-family: "Zen Kaku Gothic New", sans-serif;
+}
+.buttonname-en {
+  font-family: "Ms Madi", cursive;
+  font-size: 16px;
+  color: #ffc200;
+}
+.kurahiro-active, .juken-active, .tech-active, .mama-active, .sticker-active, .game-active, .hs-active, .us-active {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 300ms ease, opacity 200ms ease;
+
+  display: none;
+}
+.kurahiro-content1, .juken-content1, .tech-content1, .mama-content1, .sticker-content1, .game-content1, .hs-content1, .us-content1 {
+  color: #161819;
+  font-size: 20px;
+}
+.kurahiro-content2, .juken-content2, .tech-content2, .mama-content2, .sticker-content2, .game-content2, .hs-content2, .us-content2 {
+  color: #161819;
+  font-size: 16px;
+}
+.kurahiro-content3, .juken-content3, .tech-content3, .mama-content3, .sticker-content3, .game-content3, .hs-content3, .us-content3 {
+  color: #161819;
+  font-size: 14px;
+  margin-bottom: 40px;
+}
+
+
+
+/* 開いてる状態 */
+.kurahiro-active.active{
+  max-height: 5100px; /* 中身が増えるなら大きめに */
+  opacity: 1;
+  padding: 3%;
+  margin-bottom: 50px;
+
+  
+}
+.juken-active.active{
+  max-height: 5100px; /* 中身が増えるなら大きめに */
+  opacity: 1;
+  padding: 3%;
+  margin-bottom: 50px;
+}
+.tech-active.active{
+  max-height: 5100px; /* 中身が増えるなら大きめに */
+  opacity: 1;
+  padding: 3%;
+  margin-bottom: 50px;
+}
+.mama-active.active{
+  max-height: 5100px; /* 中身が増えるなら大きめに */
+  opacity: 1;
+  padding: 3%;
+  margin-bottom: 50px;
+}
+.sticker-active.active{
+  max-height: 5100px; /* 中身が増えるなら大きめに */
+  opacity: 1;
+  padding: 3%;
+  margin-bottom: 50px;
+}
+.game-active.active{
+  max-height: 5100px; /* 中身が増えるなら大きめに */
+  opacity: 1;
+  padding: 3%;
+  margin-bottom: 50px;
+}
+.hs-active.active{
+  max-height: 5100px; /* 中身が増えるなら大きめに */
+  opacity: 1;
+  padding: 3%;
+  margin-bottom: 50px;
+}
+.us-active.active{
+  max-height: 5500px; /* 中身が増えるなら大きめに */
+  opacity: 1;
+  padding: 3%;
+  margin-bottom: 50px;
+}
+#kurahiro-panel, #juken-panel, #tech-panel, #mama-panel, #sticker-panel, #game-panel, #hs-panel, #us-panel {
+  width: 85%;
+  background-color: #fff;
+  border-radius: 30px;
+  margin-top: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+.kurahiro-work, .juken-work, .tech-work, .mama-work, .sticker-work, .game-work, .hs-work, .us-work {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+.kurahiro-work img, .juken-work img, .tech-work img, .mama-work img, .sticker-work img, .game-work img, .hs-work img, .us-work img {
+  width: 50%;
+  height: auto;
+}
+.expand img {
+  width: 100%;
+  object-fit: contain;
+}
+.expand img:nth-child(3) {
+  height: 400px;
+  width: auto;
+}
+.game-work:nth-child(4) img {
+  background-color: #161819;
+}
+.kurahiro-worktext, .juken-worktext, .tech-worktext, .mama-worktext, .sticker-worktext, .game-worktext, .hs-worktext, .us-worktext {
+  font-size: 16px;
+
+}
+.kurahiro-workbox, .juken-workbox, .tech-workbox, .mama-workbox, .sticker-workbox, .game-workbox, .hs-workbox, .us-workbox {
+  gap: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.kurahiro-close, .juken-close, .tech-close, .mama-close, .sticker-close, .game-close, .hs-close, .us-close {
+  font-size: 18px;
+  color: #fff;
+  background-color: #161819;
+  padding: 1% 5%;
+}
+
+.expand {
+  display: flex;
+  overflow-x:auto;
+  width: 60%;
+  gap: 25px;
+  background: #161819;
+}
+::-webkit-scrollbar-thumb {
+  background:#fff;
+}
+
+
+
+
+
+#footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+}
+#footer .footer-decorate {
+  width: 130px;
+  height: auto;
+  margin-bottom: 80px;
+}
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  align-items: center;
+}
+.footer-big {
+  display: flex;
+  gap: 6%;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.tel, .mail {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.tel img, .mail img {
+  width: 50px;
+  height: auto;
+}
+.tel-text, .mail-text {
+  font-size: 20px;
+  
+}
+.mail {
+  display: flex;
+}
+.footer-small {
+  width: 70%;
+  margin-bottom: 80px;
+}
+.footer-menu {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+.footer-menu li a {
+  font-size: 18px;
+  color: #161819;
+}
+#footer small {
+  margin-bottom: 60px;
+}
+
+
+.blob {
+  position:absolute;
+  top:-5%;
+  right:-10%;
+
+  width:600px;
+  height:450px;
+
+  background:radial-gradient(circle,#ffffff,#dcdcdc);
+  filter:blur(2px);
+
+  border-radius:50%;
+
+  animation:morph 15s ease-in-out infinite;
+  z-index: 1;
+}
+
+.blob2 {
+  position:absolute;
+  top:40%;
+  left:5%;
+
+  width:350px;
+  height:300px;
+
+  background:radial-gradient(circle,#ffffff,#dcdcdc);
+  filter:blur(2px);
+
+  border-radius:50%;
+
+  animation:morph 15s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes morph{
+  0%{
+    border-radius:50% 50% 40% 60% / 60% 40% 60% 40%;
+  }
+  25%{
+    border-radius:60% 40% 60% 40% / 40% 60% 40% 60%;
+  }
+  50%{
+    border-radius:40% 60% 50% 50% / 50% 50% 60% 40%;
+  }
+  75%{
+    border-radius:55% 45% 45% 55% / 60% 40% 50% 50%;
+  }
+  100%{
+    border-radius:50% 50% 40% 60% / 60% 40% 60% 40%;
+  }
+}

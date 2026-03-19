@@ -1,0 +1,640 @@
+@charset "UTF-8";
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+button:hover {
+  opacity: 0.7;
+}
+
+body {
+  font-family: "M PLUS 1p", sans-serif;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+body.fade-out {
+  opacity: 0;
+}
+body.fade-in {
+  opacity: 1;
+}
+
+
+
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+
+#content {
+  height: fit-content;
+}
+
+#opening {
+  position: fixed;
+  inset: 0;
+  background: #101010;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 2.0s ease, opacity 2.0s ease;
+}
+
+#opening.exit {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+#opening video {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+
+#header {
+ position: absolute;
+ padding: 5%;
+ background-color: rgb(22 24 25 / 65%);
+ border-bottom-right-radius: 20px;
+ z-index: 100;
+}
+.menu-small {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  color: #ffffff;
+}
+.menu-small a {
+  font-size: 18px;
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+}
+.top {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+
+.illust img{
+  width: 100%;
+  height: auto;
+}
+
+.inside {
+ position: relative;
+ height: fit-content;
+}
+.inside::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../img/dot.png");
+  background-position: center;
+  opacity: 0.6;
+  z-index: -1;
+  background-repeat: repeat-y;
+  background-size: 95% auto;
+  
+}
+#about {
+  margin-bottom: 100px;
+  padding: 15% 0 0 0;
+}
+
+.about-content {
+  display: flex;
+  align-items: center;
+}
+.about-content img {
+  width: 25%;
+  height: auto;
+}
+.inside-title {
+  font-size: 55px;
+  color: #ffffff;
+  padding: 1% 35% 1% 10%;
+  background: linear-gradient(to right, rgb(22 24 25 / 100%), rgb(22 24 25 / 80%), rgb(22 24 25 / 0%));
+  font-family: "Montserrat";
+  width: fit-content;
+}
+.name {
+  font-size: 34px;
+}
+.about-text {
+  padding: 2% 0 2% 10%;
+  display: flex;
+  flex-direction: column;
+}
+.about-text img {
+  width: 55%;
+  height: auto;
+  margin-bottom: 35px;
+}
+.about-big {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.about-small {
+  font-size: 18px;
+}
+.about-top {
+  display: flex;
+  align-items: center;
+}
+
+
+.footpath{
+  position: relative;
+  width: 40%;
+  height: 60vh;
+  overflow: hidden;
+  pointer-events: none;
+  text-align: center;
+
+}
+
+.foot{
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+
+  /* 小さめならここを調整 */
+  width: 90px;
+  height: 90px;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  opacity: 0;
+
+  animation: none;
+}
+
+.footpath.play .foot {
+  animation: stepFade 8s ease forwards;
+  animation-delay: calc(var(--i) * 0.45s);
+}
+
+/* 画像差し替え：ファイル名は自分のに変更してね */
+.foot.left  { background-image: url("../img/footprint-left.png"); transform: rotate(-10deg) translate(-10px); }
+.foot.right { background-image: url("../img/footprint-right.png"); transform: rotate(10deg) translate(10px); }
+
+
+
+/* 出現 → 1秒固定 → フェードアウト */
+@keyframes stepFade{
+  0%   { opacity: 0; }
+  25%   { opacity: 1; }   /* ここでパッと出る */
+  65%  { opacity: 1; }   /* 約1秒キープ（2秒中の50%分くらい） */
+  100% { opacity: 0; }
+}
+
+
+.float-words{
+  position: relative;
+  width: 100%;
+  height: fit-content;       /* 表示領域 */
+  overflow: visible;   /* はみ出し隠す */
+  pointer-events: none; /* クリック邪魔しない */
+  background-position: center center;
+
+}
+.img-wave {
+  z-index: -100;
+  display: block;
+  margin: 0 auto;
+
+}
+
+.w{
+  position: absolute;
+  color: #161819;
+  animation: floatY var(--dur) ease-in-out infinite alternate;
+  filter: blur(0px); /* 好みで */
+}
+.size0 {
+  font-size: 115px;
+}
+.size1 {
+  font-size: 79px;
+}
+.size2 {
+  font-size: 58px;
+}
+.size3 {
+  font-size: 41px;
+}
+
+/* ふわふわ上下 */
+@keyframes floatY{
+  from { transform: translateY(0px); }
+  to   { transform: translateY(var(--dy)); }
+}
+
+/* 単語ごとに配置と揺れ幅・速度を変える（＝均等じゃない） */
+.design{ top: 32%; left: 37%;  --dy: -14px; --dur: 2.4s; }
+.write{ top: 5%; left: 55%; --dy:  14px; --dur: 4.4s; }
+.photo{ top: 16%; left: 16%; --dy: -16px; --dur: 4.0s; }
+.illust{ top: 62%; left: 20%; --dy:  14px; --dur: 3.9s; }
+.game{ top: 14%; left: 42%; --dy: -14px; --dur: 4.8s; }
+.snack{ top: 43%; left: 21%; --dy:  16px; --dur: 4.0s; }
+.coffee{ top: 26%; left: 70%; --dy: -14px; --dur: 4.8s; }
+.music{ top: 87%; left: 48%; --dy:  16px; --dur: 4.0s; }
+.live2d{ top: 87%; left: 65%; --dy:  16px; --dur: 4.0s; }
+.book{ top: 9%; left: 33%; --dy: -14px; --dur: 4.8s; }
+.daydream{ top: 53%; left: 66%; --dy:  16px; --dur: 4.0s; }
+.baking{ top: 70%; left: 57%; --dy: -14px; --dur: 4.8s; }
+.plushtoy{ top: 90%; left: 28%; --dy:  16px; --dur: 4.0s; }
+
+
+#creative {
+  padding-top: 10%;
+  margin-bottom: 80px;
+}
+.creative-button {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 8% 7% 0 7%;
+  width: 70%;
+  margin: 0 auto;
+}
+.creative-button img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 9%;
+}
+.button-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 50%;
+}
+.button-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 50%;
+}
+.button-design {
+  border: #b5b5b6 1px solid;
+  border-top-left-radius: 20px;
+  display: flex;
+  background-image: url(../img/design/us/us3.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 350px;
+  align-items:flex-end;
+  position: relative;
+  overflow:hidden;
+}
+.button-design::before, .button-photo::before, .button-illust::before, .button-other::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  opacity:0;
+  transition:0.3s;
+}
+.button-photo {
+  border: #b5b5b6 1px solid;
+  border-bottom-left-radius: 20px;
+  display: flex;
+  background-image: url(../img/photo/photo7.webp);
+  background-size: cover;
+  background-position: center;
+  height: 350px;
+  align-items:flex-end;
+  position: relative;
+  overflow:hidden;
+}
+.button-illust {
+  border: #b5b5b6 1px solid;
+  border-top-right-radius: 20px;
+  display: flex;
+  background-image: url(../img/illust/4th.png);
+  background-size: cover;
+  background-position: center;
+  height: 350px;
+  align-items:flex-end;
+  position: relative;
+  overflow:hidden;
+}
+.button-other {
+  border: #b5b5b6 1px solid;
+  border-bottom-right-radius: 20px;
+  display: flex;
+  background-image: url(../img/other/diner/diner1.JPG);
+  background-size: cover;
+  background-position: center;
+  height: 350px;
+  align-items:flex-end;
+  position: relative;
+  overflow:hidden;
+}
+.button-photo img {
+  margin-bottom: 50px;
+}
+.button-illust img {
+  margin-bottom: 64px;
+
+}
+.buttontext1, .buttontext2, .buttontext3, .buttontext4 {
+  font-size: 30px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+  
+  width: fit-content;
+  padding: 0 5% 0 7%
+}
+.buttontext1- {
+  position:absolute;
+  bottom:42%;
+  left:35%;
+  color:white;
+  opacity:0;
+  transition:0.3s;
+}
+.buttontext2- {
+  position:absolute;
+  bottom:42%;
+  left:25%;
+  color:white;
+  opacity:0;
+  transition:0.3s;
+}
+.buttontext3- {
+  position:absolute;
+  bottom:42%;
+  left:25%;
+  color:white;
+  opacity:0;
+  transition:0.3s;
+}
+.buttontext4- {
+  position:absolute;
+  bottom:42%;
+  left:35%;
+  color:white;
+  opacity:0;
+  transition:0.3s;
+}
+.button-design:hover::before, .button-photo:hover::before, .button-illust:hover::before, .button-other:hover::before{
+  opacity:1;
+}
+.button-design:hover .buttontext1-, .button-photo:hover .buttontext2-, .button-illust:hover .buttontext3-, .button-other:hover .buttontext4-{
+  opacity:1;
+}
+
+
+
+
+
+#skills {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  padding-top: 10%;
+  
+}
+.tool {
+  padding: 15% 4% 7% 4%;
+  background: #161819;
+  position: relative;
+  margin-top: 5%;
+}
+.tool span {
+  width: 80%;
+  background: linear-gradient(to right, rgb(255 201 25 / 0%), rgb(255 201 25 / 100%));
+  height: 20px;
+  display: block;
+  border-left: solid 1px #ffc919;
+  position: absolute;
+  top: 50%;              /* ← spot1〜4 と同じ */
+  left: 50%;
+  transform: translateX(-50%);
+}
+.tool .spot1 {
+  position: absolute;
+  top: 30%;
+  left: 78%;
+}
+.tool .spot2 {
+  position: absolute;
+  top: 30%;
+  left: 65%;
+}
+.tool .spot3 {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+}
+.tool .spot4 {
+  position: absolute;
+  top: 30%;
+  left: 20%;
+}
+.tool img {
+  width: 45px;
+  height: auto;
+}
+
+.tool .spot-hover1, .tool .spot-hover2, .tool .spot-hover3, .tool .spot-hover4{
+  display: none;
+  text-align: center;
+}
+.spot:hover .spot-hover1,  .spot:hover .spot-hover2, .spot:hover .spot-hover3, .spot:hover .spot-hover4{
+  display: block;
+}
+.spot-text {
+  font-size: 20px;
+  color: #fff;
+  font-family: "M PLUS 1p", sans-serif;
+}
+.spot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  width: 200px;
+  position: absolute;
+}
+
+.spot::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  transform: translate(-50%,-50%);
+  background: rgba(255, 201, 25, 0.25);
+  opacity: 0;
+  filter: blur(0px);
+  pointer-events: none;
+}
+
+/* ホバー時だけ表示 */
+.spot:hover::after{
+  opacity: 1;
+  animation: pulse 1.2s ease-out infinite;
+}
+
+@keyframes pulse{
+  from { transform: translate(-50%,-50%) scale(0.9); opacity: .55; }
+  to   { transform: translate(-50%,-50%) scale(1.5); opacity: 0; }
+}
+
+/* ピン本体 */
+.spot .img-pin {
+  animation: none;
+}
+
+
+/* ホバーしたら待機アニメを止める */
+.spot:hover .img-pin {
+ 
+
+ animation: idleBounce 1.4s ease-in-out infinite;
+  display: inline-block;
+  
+}
+
+@keyframes idleBounce{
+  0%   { transform: translateY(0); }
+  20%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+
+
+.marquee {
+  width: 100%;
+ 
+  padding: 3% 0;
+  background: linear-gradient(
+    to right,
+    #b5b5b6 0%,
+    #ffffff 50%,
+    #b5b5b6 100%
+  );
+  justify-content: center;
+  display: flex;
+  background-size: 200% 100%; /* ← 高さを大きく */
+  animation: waveMoveX 6s ease-in-out infinite;
+  margin: 0 auto;
+}
+
+@keyframes waveMoveX {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
+.marquee-track {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background-color: #fff;
+  gap: 35px;
+  padding: 0 5%;
+
+
+  
+  /*animation: marquee 40s linear infinite;*/
+}
+
+/* ここが肝：間隔はgapじゃなくpの内側/外側で作る */
+.marquee-track p {
+ 
+  font-size: 18px;
+  color: #161819;
+  padding: 1% 0;
+  border-radius: 999px 999px;
+}
+
+
+#footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+}
+#footer .footer-decorate {
+  margin-bottom: 150px;
+  width: 130px;
+  margin-bottom: 80px;
+}
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  align-items: center;
+}
+.footer-big {
+  display: flex;
+  gap: 6%;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.tel, .mail {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.tel img, .mail img {
+  width: 50px;
+  height: auto;
+}
+.tel-text, .mail-text {
+  font-size: 20px;
+  
+}
+.mail {
+  display: flex;
+}
+.footer-small {
+  width: 70%;
+  margin-bottom: 80px;
+}
+.footer-menu {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+.footer-menu li a {
+  font-size: 18px;
+  color: #161819;
+}
+#footer small {
+  margin-bottom: 60px;
+}
+
+
